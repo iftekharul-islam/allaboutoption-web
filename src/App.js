@@ -2,6 +2,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import Registration from "./pages/Registration";
 
 const App = () => {
   return (
@@ -9,6 +13,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<Registration />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </Router>
   );
