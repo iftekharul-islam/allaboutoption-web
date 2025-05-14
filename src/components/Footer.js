@@ -82,7 +82,7 @@ const Footer = () => {
 
       {/* Bottom Credit */}
       <div className="text-center text-sm text-gray-500 py-4">
-        Developed and Maintained by <a href="https://www.weaetherix.com" className="text-indigo-500 hover:underline">Aetherix Limited</a>
+        Developed and Maintained by <span className="text-indigo-500 hover:underline">IAATO</span>
       </div>
     </footer>
   );
