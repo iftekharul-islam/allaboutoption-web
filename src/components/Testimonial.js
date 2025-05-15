@@ -54,13 +54,13 @@ const Testimonial = () => {
                   <p className="text-indigo-500 font-semibold">{item.name}</p>
                   <div className="flex gap-1 text-yellow-400">
                     {[1,2,3,4,5].map((_, i) => (
-                      <>
+                      <span key={i}>
                       {i < item.rating ? (
                         <FaStar key={i} className="text-yellow-400" />
                       ) : (
                         <FaStar key={i} className="text-gray-400" />
                       )}
-                      </>
+                      </span>
                     ))}
                   </div>
                 </div>
