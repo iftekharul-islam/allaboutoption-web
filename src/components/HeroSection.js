@@ -6,7 +6,8 @@ const HeroSection = () => {
   return (
     <section className="bg-white w-full pt-16 px-4 md:px-20 flex flex-col-reverse lg:flex-row items-center justify-between">
       {/* Left Text Content */}
-      <div className="max-w-xl text-center lg:text-left">
+
+      <div className="text-center lg:text-left">
         <h4 className="text-indigo-600 text-lg font-semibold mb-2">Become an All-Season Options Trader</h4>
         <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
           Options Trading Mentorship Program
@@ -37,7 +38,7 @@ const HeroSection = () => {
           href="https://wa.me/+13034725428" // replace with actual WhatsApp link
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition"
+          className="inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition mb-16 md:mb-0"
         >
           <FaWhatsapp className="text-xl" />
           WhatsApp Us
