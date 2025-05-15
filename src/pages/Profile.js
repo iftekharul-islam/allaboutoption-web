@@ -1,7 +1,8 @@
 import moment from "moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import defaultAvatar from "../assets/smart_mentor.png"; // Use actual avatar if available
+import Api from "../service/http";
 
 const Profile = () => {
   const [user, setUser] = useState(
@@ -14,6 +15,20 @@ const Profile = () => {
   if (!isLoggedIn) {
     window.location.href = "/signin";
   }
+
+  const getProfile = async() => {
+    const res = await Api.get("/web/profile");
+    if(res?.data?.user){
+      localStorage.setItem("user", JSON.stringify(res?.data?.user));
+      setUser(res?.data?.user);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getProfile();
+    }
+  }, []);
 
   return (
     <div className="bg-white px-4 py-10 text-white">
@@ -34,7 +49,7 @@ const Profile = () => {
 
         <div className="mt-10 border-t border-gray-700 pt-6">
           <h3 className="text-xl font-semibold mb-4">Subscription Details</h3>
-          {!user?.expired_at ? (
+          {user?.expired_at ? (
             <span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>

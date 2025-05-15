@@ -4,11 +4,24 @@ import logo from "../assets/logo.png"; // Adjust the path to your logo
 import Api from "../service/http";
 
 const SigninForm = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('accessToken') ? true : false);
+  const params = new URLSearchParams(window.location.search);
+  const redirect = params.get("redirect");
+  const tag = params.get("tag");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("accessToken") ? true : false
+  );
   const [loading, setLoading] = useState(false);
 
   if (isLoggedIn) {
-    window.location.href = "/profile";
+    let url = "/profile";
+    if (redirect) {
+      url = redirect;
+      if (tag) {
+        url += `#${tag}`;
+      }
+    }
+    window.location.href = url;
   }
 
   const [formData, setFormData] = useState({
@@ -36,12 +49,20 @@ const SigninForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setLoading(true);
     const response = await Api.post("/web/login", formData);
     if (response.status === 200) {
       localStorage.setItem("accessToken", JSON.stringify(response.data.access));
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      window.location.href = "/profile";
+      let url = "/profile";
+      if (redirect) {
+        url = redirect;
+        if (tag) {
+          url += `#${tag}`;
+        }
+      }
+      window.location.href = url;
     } else {
       setError(response?.data?.message || "Login failed");
       console.error("Login failed");
@@ -133,9 +154,9 @@ const SigninForm = () => {
 
           {/* Submit Button */}
           {/* <div className="flex items-center justify-between mt-4"> */}
-            <div className="text-red-500 text-sm w-full text-center font-medium">
-              {error ? error : ""}
-            </div>
+          <div className="text-red-500 text-sm w-full text-center font-medium">
+            {error ? error : ""}
+          </div>
           {/* </div> */}
           <button
             type="submit"

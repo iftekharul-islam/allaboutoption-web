@@ -15,7 +15,8 @@ let Api = axios.create({
 
   validateStatus: function (status) {
     if (status === 401) {
-        console.log("Unauthorized");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("user");
     }
 
     if (status === 422) {

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
 import Api from "../service/http";
+import CardForm from "./CardForm";
 import DropdownSelect from "./DropdownSelect";
+import StripeProvider from "./StripeProvider";
 
 const features = [
   "14+ Hours on-demand content",
@@ -14,9 +17,29 @@ const features = [
 ];
 
 const PricingSection = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("accessToken") ? true : false
+  );
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
+
   const [program, setProgram] = useState({});
   const [selectedPlan, setSelectedPlan] = useState(1);
-  const [selectedGateway, setSelectedGateway] = useState(1);
+  const [selectedGateway, setSelectedGateway] = useState("stripe");
+  const [loading, setLoading] = useState(false);
+  const [clientSecret, setClientSecret] = useState(null);
+
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   const getProgram = async () => {
     const result = await Api.get("/web/program");
@@ -33,11 +56,64 @@ const PricingSection = () => {
 
   useEffect(() => {
     if (selectedPlan == 2) {
-      setSelectedGateway(2);
+      setSelectedGateway("paypal");
     }
   }, [selectedPlan]);
 
-  const enrollNow = async () => {};
+  const enrollNow = async () => {
+    if (!isLoggedIn) {
+      window.location.href = "/signin?redirect=/&tag=pricing";
+      return;
+    }
+    setLoading(true);
+    try {
+      const result = await Api.post("/web/create-payment-intent", {
+        term: selectedPlan,
+        gateway: selectedGateway,
+        program_id: program.id,
+      });
+      if (result?.data?.approveLink && selectedGateway === "paypal") {
+        window.location.href = result.data.approveLink;
+      }
+      if (
+        result?.data?.setupIntentClientSecret &&
+        selectedGateway === "stripe"
+      ) {
+        setClientSecret(result.data.setupIntentClientSecret);
+      }
+    } catch (error) {
+      console.error("Error during enrollment:", error);
+    }
+
+    setLoading(false);
+  };
+
+  const handleStripeCompletion = async (setupIntent) => {
+    if (setupIntent?.error) {
+      alert("Error: " + setupIntent.error.message);
+    } else {
+      const res = await Api.post("/web/create-subscription", {
+        gateway: "stripe",
+        program_id: program?.id,
+        term: selectedPlan,
+      });
+      navigate("/profile");
+    }
+  };
+
+  const getProfile = async() => {
+    const res = await Api.get("/web/profile");
+    if(res?.data?.user){
+      localStorage.setItem("user", JSON.stringify(res?.data?.user));
+      setUser(res?.data?.user);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      getProfile();
+    }
+  }, []);
 
   return (
     <section className="bg-[#0e0e11] text-white py-24 px-4 md:px-20">
@@ -78,46 +154,91 @@ const PricingSection = () => {
             <p className="text-sm text-red-400 mt-1">Cancel anytime</p>
           </div>
 
-          <div className="flex items-center justify-evenly mb-4">
-            {selectedPlan == 1 && (
-              <div
-                className={
-                  "border-2 rounded-full px-4 py-2 cursor-pointer " +
-                  (selectedGateway === 1
-                    ? "border-black text-black bg-indigo-500"
-                    : "border-white-600 text-white-500")
-                }
-                onClick={() => setSelectedGateway(1)}
-              >
-                Stripe
+          {!user?.expired_at ? (
+            <span>
+              <div className="flex items-center justify-evenly mb-4">
+                {selectedPlan == 1 && (
+                  <div
+                    className={
+                      "border-2 rounded-full px-4 py-2 cursor-pointer " +
+                      (selectedGateway === "stripe"
+                        ? "border-black text-black bg-indigo-500"
+                        : "border-white-600 text-white-500")
+                    }
+                    onClick={() => setSelectedGateway("stripe")}
+                  >
+                    Stripe
+                  </div>
+                )}
+                <div
+                  className={
+                    "border-2 rounded-full px-4 py-2 cursor-pointer " +
+                    (selectedGateway === "paypal"
+                      ? "border-black text-black bg-indigo-500"
+                      : "border-white-600 text-white-500")
+                  }
+                  onClick={() => setSelectedGateway("paypal")}
+                >
+                  Paypal
+                </div>
               </div>
-            )}
-            <div
-              className={
-                "border-2 rounded-full px-4 py-2 cursor-pointer " +
-                (selectedGateway === 2
-                  ? "border-black text-black bg-indigo-500"
-                  : "border-white-600 text-white-500")
-              }
-              onClick={() => setSelectedGateway(2)}
-            >
-              Paypal
-            </div>
-          </div>
 
-          <button
-            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-full font-semibold mb-3"
-            onClick={enrollNow}
-          >
-            Enroll Now
-          </button>
-          <button className="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-full font-medium">
-            Request a call
-          </button>
+              {!clientSecret ? (
+                <button
+                  className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded-full font-semibold mb-3"
+                  onClick={enrollNow}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <svg
+                      className="animate-spin h-5 w-5 mr-3 text-white inline-block"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                      <line x1="12" y1="6" x2="12" y2="12" />
+                      <line x1="12" y1="18" x2="12" y2="18" />
+                    </svg>
+                  ) : (
+                    "Enroll Now"
+                  )}
+                </button>
+              ) : (
+                <div className="mb-4">
+                  <StripeProvider>
+                    <CardForm
+                      clientSecret={clientSecret}
+                      onComplete={handleStripeCompletion}
+                    />
+                  </StripeProvider>
+                </div>
+              )}
+              <button className="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-full font-medium">
+                Request a call
+              </button>
 
-          <p className="text-sm text-gray-400 mt-4">
-            Act fast, seats are limited!
-          </p>
+              <p className="text-sm text-gray-400 mt-4">
+                Act fast, seats are limited!
+              </p>
+            </span>
+          ) : (
+            <span>
+              <p className="text-sm text-gray-400 mb-4">
+                You are already subscribed.
+              </p>
+              <button
+                className="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-full font-medium"
+                onClick={() => navigate("/profile")}
+              >
+                Go to Profile
+              </button>
+            </span>
+          )}
         </div>
 
         <div className="flex-1 space-y-4 text-left">
