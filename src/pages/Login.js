@@ -5,10 +5,11 @@ import Api from "../service/http";
 
 const SigninForm = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('accessToken') ? true : false);
+  const [loading, setLoading] = useState(false);
 
-    if (isLoggedIn) {   
-        window.location.href = "/profile";
-    }
+  if (isLoggedIn) {
+    window.location.href = "/profile";
+  }
 
   const [formData, setFormData] = useState({
     username: "",
@@ -16,6 +17,7 @@ const SigninForm = () => {
     remember: true,
     showPassword: false,
   });
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
@@ -32,17 +34,19 @@ const SigninForm = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    const response = await Api.post("/web/login", formData)
+    setLoading(true);
+    const response = await Api.post("/web/login", formData);
     if (response.status === 200) {
       localStorage.setItem("accessToken", JSON.stringify(response.data.access));
       localStorage.setItem("user", JSON.stringify(response.data.user));
       window.location.href = "/profile";
     } else {
+      setError(response?.data?.message || "Login failed");
       console.error("Login failed");
     }
+    setLoading(false);
   };
 
   return (
@@ -128,11 +132,34 @@ const SigninForm = () => {
           </div>
 
           {/* Submit Button */}
+          {/* <div className="flex items-center justify-between mt-4"> */}
+            <div className="text-red-500 text-sm w-full text-center font-medium">
+              {error ? error : ""}
+            </div>
+          {/* </div> */}
           <button
             type="submit"
             className="w-full bg-violet-600 hover:bg-violet-700 transition-all text-white py-3 rounded-lg font-medium"
+            disabled={loading}
           >
-            Sign in
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 mr-3 text-white inline-block"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <line x1="12" y1="6" x2="12" y2="12" />
+                <line x1="12" y1="18" x2="12" y2="18" />
+              </svg>
+            ) : (
+              "Sign in"
+            )}
           </button>
 
           {/* Sign up link */}
