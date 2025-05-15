@@ -1,4 +1,3 @@
-import { FaYoutube } from 'react-icons/fa';
 import smart_mentor from '../assets/smart_mentor.png'; // replace with your image path
 
 const AboutSection = () => {
@@ -10,32 +9,18 @@ const AboutSection = () => {
         <div className="lg:w-1/2">
           <h2 className="text-white text-3xl md:text-4xl font-bold mb-6">Meet your Mentors</h2>
 
-          <h3 className="text-xl font-semibold mb-2">Hey, Dear Your Name</h3>
-          <p className="text-indigo-400 mb-4">18+ years experience</p>
+          <h3 className="text-xl font-semibold mb-2">Hey, Dear Concern</h3>
+          {/* <p className="text-indigo-400 mb-4">18+ years experience</p> */}
 
           <p className="text-gray-300 leading-relaxed mb-6">
-            Name Here has over 18 years of experience in the USA financial markets,
-            serving as Technical Research Head, PMS Fund Manager, and an active
-            trainer in the field of Technical Analysis and Trading. He had held key
-            positions at ICICI Securities and BRICS Securities. As a technical analysis
-            trainer, he visits various business schools and institutions such as IIMC,
-            NSE Academy, NIBM Pune, BIBS Kolkata, India Infoline, and, of course,
-            elearn markets. He was also a regular face on many business channels such
-            as CNBC, Zee Business, Bloomberg, CNBC Awaaz, and Moneycontrol.
-            He holds an MBA in Finance from Mumbai and a B.Sc in Economics from
-            the University of Calcutta.
+            Our group mentors have many years of experience in the American options financial markets, specializing in Options Scalp Trading Strategies and Time Frames. They will guide you through the Ingredients of our Trading Options Setups, Relative Strength Index Demystified, Step Pattern Breakout Strategy, Sequencing Strategy, and Momentum Strategy.
           </p>
-
-          <button className="inline-flex items-center gap-2 text-white px-4 py-2 border border-indigo-400 rounded-full hover:bg-indigo-500 transition">
-            <FaYoutube className="text-red-500" />
-            Watch His Journey
-          </button>
 
           {/* Floating Card */}
           <div className="bg-gradient-to-b from-[#1a1a1f] to-[#15151a] mt-8 p-4 rounded-xl shadow-lg max-w-md">
             <h4 className="font-semibold text-white text-lg mb-2">Trading Mentor</h4>
             <p className="text-sm text-gray-300">
-              Name Here specializes in Trading Strategies and Time Frames. He will guide you
+              He specializes in Trading Strategies and Time Frames. He will guide you
               through the Ingredients of our Trading Setups, Relative Strength Index Demystified,
               Breakout Strategy, Contrarian Strategy, and Pull Back Strategy.
             </p>

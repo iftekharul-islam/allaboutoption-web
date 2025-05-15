@@ -10,7 +10,7 @@ const ContactSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-indigo-600 mb-4">Contact Us</h2>
           <p className="text-gray-700 text-base mb-2">
             Need to get in touch with us? Either fill out the form with your inquiry or find the{" "}
-            <span className="text-indigo-500 underline">Department email</span> you’d like to contact below.
+            <a href='mailto:accounts@itsallaboutheoptions.com' className="text-indigo-500 underline">accounts@itsallaboutheoptions.com</a> you’d like to contact below.
           </p>
 
           {/* Callout Box */}
@@ -19,7 +19,7 @@ const ContactSection = () => {
             <p className="text-indigo-500 text-sm mb-3">Get expert guidance with our Trading Mentorship Program.</p>
             <p className="text-black font-semibold text-sm">Have Questions?</p>
             <p className="text-black text-sm">
-              Dial <a href="tel:+564556545" className="text-indigo-600 font-semibold">+56 455 6545</a> to connect with our program advisor.
+              Dial <a href="tel:+1 303 4725428" className="text-indigo-600 font-semibold">+1 303 4725428</a> to connect with our program advisor.
             </p>
             <FaQuestionCircle className="absolute top-4 right-4 text-indigo-500 text-xl" />
           </div>
@@ -44,11 +44,6 @@ const ContactSection = () => {
             <input
               type="email"
               placeholder="Email*"
-              className="w-full p-3 rounded bg-[#1d1d1f] text-white placeholder-gray-400 outline-none"
-            />
-            <input
-              type="tel"
-              placeholder="Phone*"
               className="w-full p-3 rounded bg-[#1d1d1f] text-white placeholder-gray-400 outline-none"
             />
             <textarea
