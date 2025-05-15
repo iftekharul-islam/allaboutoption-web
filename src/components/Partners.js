@@ -5,20 +5,21 @@ import partner_3 from '../assets/partners/partner_3.png';
 import partner_4 from '../assets/partners/partner_4.png';
 import partner_5 from '../assets/partners/partner_5.png';
 import partner_6 from '../assets/partners/partner_6.png';
+import partner_7 from '../assets/partners/partner_7.png';
 
 
 const Partners = () => {
   const partners = 
   [
     {
-      name: "Visual Composer",
+      name: "Stripe",
       logo: partner_1,
-      alt: "Visual Composer",
+      alt: "Stripe",
     },
     {
-      name: "Divi Builder",
+      name: "Paypal",
       logo: partner_2,
-      alt: "Divi Builder",
+      alt: "Paypal",
     },
     {
       name: "Crypto Partner",
@@ -40,6 +41,11 @@ const Partners = () => {
       logo: partner_6,
       alt: "Bull Logo",
     },
+    {
+      name: "X",
+      logo: partner_7,
+      alt: "X",
+    }
   ];
 
   return (

@@ -16,19 +16,19 @@ const Footer = () => {
         <div className="flex flex-wrap gap-6 justify-center items-center text-gray-300">
           <div className="flex items-center gap-2">
             <FaYoutube className="text-xl" />
-            <span>15.1K+ Subscribers</span>
+            {/* <span>15.1K+ Subscribers</span> */}
           </div>
           <div className="flex items-center gap-2">
             <FaFacebookF className="text-xl" />
-            <span>15.1K+ Followers</span>
+            {/* <span>15.1K+ Followers</span> */}
           </div>
           <div className="flex items-center gap-2">
             <FaInstagram className="text-xl" />
-            <span>15.1K+ Followers</span>
+            {/* <span>15.1K+ Followers</span> */}
           </div>
           <div className="flex items-center gap-2">
             <FaLinkedinIn className="text-xl" />
-            <span>15.1K+ Followers</span>
+            {/* <span>15.1K+ Followers</span> */}
           </div>
         </div>
       </div>
