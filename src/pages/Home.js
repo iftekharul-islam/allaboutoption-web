@@ -14,7 +14,7 @@ import WhoCanJoin from "../components/WhoCanJoin";
 const Home = () => {
   return (
     <div>
-        <section id="home" className="px-20 pt-5">
+        <section id="home">
             <HeroSection />
         </section>  
         <section>

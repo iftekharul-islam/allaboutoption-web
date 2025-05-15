@@ -43,7 +43,7 @@ const Partners = () => {
   ];
 
   return (
-    <section className="bg-black text-white py-4 px-20">
+    <section className="bg-black text-white py-16 px-4 md:px-20">
       <div className="text-center mb-2">
         <h2 className="text-3xl font-bold">Partners</h2>
         <p className="text-[#6756FE]">
@@ -51,7 +51,7 @@ const Partners = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap justify-between items-center px-40">
+      <div className="flex flex-wrap justify-between items-center">
         {partners.map((partner, idx) => (
           <div key={idx} className="flex flex-col items-center">
             <img
