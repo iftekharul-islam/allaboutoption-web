@@ -1,4 +1,4 @@
-import { FaPhoneAlt, FaQuestionCircle } from 'react-icons/fa';
+import { FaQuestionCircle } from 'react-icons/fa';
 
 const ContactSection = () => {
   return (
@@ -16,7 +16,7 @@ const ContactSection = () => {
           {/* Callout Box */}
           <div className="relative bg-white border border-indigo-400 rounded-xl p-5 mt-8 shadow-md">
             <h3 className="text-indigo-600 font-semibold text-lg mb-1">Ditch the guesswork!</h3>
-            <p className="text-indigo-500 text-sm mb-3">Get expert guidance with our Trading Mentorship Program.</p>
+            <p className="text-indigo-500 text-sm mb-3">Get expert guidance with a Trading Mentorship Program.</p>
             <p className="text-black font-semibold text-sm">Have Questions?</p>
             <p className="text-black text-sm">
               Dial <a href="tel:+1 303 4725428" className="text-indigo-600 font-semibold">+1 303 4725428</a> to connect with our program advisor.
@@ -24,11 +24,6 @@ const ContactSection = () => {
             <FaQuestionCircle className="absolute top-4 right-4 text-indigo-500 text-xl" />
           </div>
 
-          {/* Request Call Button */}
-          <button className="mt-6 flex items-center gap-2 bg-indigo-500 text-white px-6 py-3 rounded-full shadow hover:bg-indigo-600 transition">
-            <FaPhoneAlt />
-            Request a Call
-          </button>
         </div>
 
         {/* Right Column: Form */}

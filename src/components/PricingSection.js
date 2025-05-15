@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import Api from "../service/http";
 import CardForm from "./CardForm";
 import DropdownSelect from "./DropdownSelect";
@@ -218,9 +219,11 @@ const PricingSection = () => {
                   </StripeProvider>
                 </div>
               )}
-              <button className="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-full font-medium">
-                Request a call
-              </button>
+              <HashLink smooth to="/#contact">
+                <div className="btn text-center w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-full font-medium">
+                  Contact Us
+                </div>
+              </HashLink>
 
               <p className="text-sm text-gray-400 mt-4">
                 Act fast, seats are limited!

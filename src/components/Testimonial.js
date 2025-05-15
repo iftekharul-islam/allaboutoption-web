@@ -5,16 +5,16 @@ import smart_mentor from '../assets/smart_mentor.png'; // Replace with your vide
 const Testimonial = () => {
   const testimonials = [
     {
-      name: 'Student Name',
+      name: 'Marvin L',
       rating: 5,
       video: smart_mentor,
-      text: `Name Here has over 18 years of experience in the USA financial markets, serving as Technical Research Head, PMS Fund Manager, and an active trainer in the field of Technical Analysis and Trading. He held key positions at ICICI Securities and BRICS Securities.`,
+      text: `Don I just want to thank you from the bottom of my heart for the help and the great calls daily.. I was at my last $80 when I found you about 4months ago and followed you..and now at $3K plus... thank you so much and im so happy to have found such a great group to be in and learn from..happy holidays from my family and I🙏🤝`,
     },
     {
-      name: 'Jane Doe',
-      rating: 3,
+      name: 'Barry B.',
+      rating: 5,
       video: smart_mentor,
-      text: `The mentorship helped me structure my trading with discipline and clarity. It's perfect for intermediate-level traders trying to go pro.`,
+      text: `I just wanted to say thank you for the advice, was close to giving up and have completely turned my account around by following the stocks you keep reiterating`,
     },
     // Add more testimonials if needed
   ];
