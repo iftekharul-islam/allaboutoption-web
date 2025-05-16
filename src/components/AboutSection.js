@@ -9,7 +9,7 @@ const AboutSection = () => {
         <div className="lg:w-1/2">
           <h2 className="text-white text-3xl md:text-4xl font-bold mb-6">Meet your Mentors</h2>
 
-          <h3 className="text-xl font-semibold mb-2">Hey, Dear Concern</h3>
+          {/* <h3 className="text-xl font-semibold mb-2">Hey, Dear Concern</h3> */}
           {/* <p className="text-indigo-400 mb-4">18+ years experience</p> */}
 
           <p className="text-gray-300 leading-relaxed mb-6">
@@ -17,14 +17,14 @@ const AboutSection = () => {
           </p>
 
           {/* Floating Card */}
-          <div className="bg-gradient-to-b from-[#1a1a1f] to-[#15151a] mt-8 p-4 rounded-xl shadow-lg max-w-md">
+          {/* <div className="bg-gradient-to-b from-[#1a1a1f] to-[#15151a] mt-8 p-4 rounded-xl shadow-lg max-w-md">
             <h4 className="font-semibold text-white text-lg mb-2">Trading Mentor</h4>
             <p className="text-sm text-gray-300">
               He specializes in Trading Strategies and Time Frames. He will guide you
               through the Ingredients of our Trading Setups, Relative Strength Index Demystified,
               Breakout Strategy, Contrarian Strategy, and Pull Back Strategy.
             </p>
-          </div>
+          </div> */}
         </div>
 
         {/* Image */}

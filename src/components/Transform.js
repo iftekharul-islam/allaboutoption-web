@@ -11,7 +11,7 @@ const Transform = () => {
             Watch your trading skills transform
           </h2>
           <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-            At Trading Mentorship Program, we help you overcome your challenges and maximize your trading potential.
+            At It's All About The Options, we help you overcome your challenges and maximize your trading potential.
             <br /><br />
             Having trained over 4000+ traders, we are sure that the tools &amp; techniques designed will help you emerge as a trader who can trade in any market condition.
           </p>
