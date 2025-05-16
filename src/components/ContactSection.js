@@ -9,17 +9,17 @@ const ContactSection = () => {
         <div className="lg:w-1/2">
           <h2 className="text-3xl md:text-4xl font-bold text-indigo-600 mb-4">Contact Us</h2>
           <p className="text-gray-700 text-base mb-2">
-            Need to get in touch with us? Either fill out the form with your inquiry or find the{" "}
-            <a href='mailto:accounts@itsallaboutheoptions.com' className="text-indigo-500 underline">accounts@itsallaboutheoptions.com</a> you’d like to contact below.
+            Need to get in touch with us? Either fill out the form with your inquiry or email{" "}
+            <a href='mailto:accounts@itsallaboutheoptions.com' className="text-indigo-500 underline">accounts@itsallaboutheoptions.com</a>.
           </p>
 
           {/* Callout Box */}
           <div className="relative bg-white border border-indigo-400 rounded-xl p-5 mt-8 shadow-md">
             <h3 className="text-indigo-600 font-semibold text-lg mb-1">Ditch the guesswork!</h3>
-            <p className="text-indigo-500 text-sm mb-3">Get expert guidance with a Trading Mentorship Program.</p>
+            <p className="text-indigo-500 text-sm mb-3">Get expert guidance with an Options Trading Mentorship Program.</p>
             <p className="text-black font-semibold text-sm">Have Questions?</p>
             <p className="text-black text-sm">
-              Dial <a href="tel:+1 303 4725428" className="text-indigo-600 font-semibold">+1 303 4725428</a> to connect with our program advisor.
+              Connect via WhatsApp to connect with our program advisor.
             </p>
             <FaQuestionCircle className="absolute top-4 right-4 text-indigo-500 text-xl" />
           </div>

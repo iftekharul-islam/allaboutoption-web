@@ -8,13 +8,11 @@ import DropdownSelect from "./DropdownSelect";
 import StripeProvider from "./StripeProvider";
 
 const features = [
-  "14+ Hours on-demand content",
-  "85+ Hours of Live Interactive Sessions",
-  "100+ hours of Live Trading Sessions",
-  "30-Minutes Counseling Session",
-  "Only-Year Community Support",
-  "1 Community WhatsApp Group",
-  "Free Inbox Chat",
+  "14+ Hours on-demand content (Coming Soon!)",
+  "85+ Hours of Live Interactive Sessions (Coming Soon!)",
+  "100+ hours of Live Trading Sessions (Coming Soon!)",
+  "Coaching",
+  "App Chat Group",
 ];
 
 const PricingSection = () => {
@@ -244,7 +242,7 @@ const PricingSection = () => {
           )}
         </div>
 
-        <div className="flex-1 space-y-4 text-left">
+        <div className="space-y-4 text-left">
           {features.map((item, idx) => (
             <div key={idx} className="flex items-center gap-3 text-white">
               <FaCheckCircle className="text-indigo-400" />
@@ -253,14 +251,14 @@ const PricingSection = () => {
           ))}
 
           {/* Bonuses */}
-          <div className="mt-8 flex flex-wrap gap-4">
+          {/* <div className="mt-8 flex flex-wrap gap-4">
             <div className="bg-gray-800 text-white px-6 py-3 rounded-lg text-sm font-medium">
               3-Month access to StockEdge Social
             </div>
             <div className="bg-gray-800 text-white px-6 py-3 rounded-lg text-sm font-medium">
               1-Year access to StockEdge Premium
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
