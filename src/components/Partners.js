@@ -2,7 +2,6 @@
 import partner_1 from '../assets/partners/partner_1.png';
 import partner_2 from '../assets/partners/partner_2.png';
 import partner_3 from '../assets/partners/partner_3.png';
-import partner_4 from '../assets/partners/partner_4.png';
 import partner_5 from '../assets/partners/partner_5.png';
 import partner_6 from '../assets/partners/partner_6.png';
 import partner_7 from '../assets/partners/partner_7.png';
@@ -22,14 +21,9 @@ const Partners = () => {
       alt: "Paypal",
     },
     {
-      name: "Crypto Partner",
+      name: "Stocktwits",
       logo: partner_3,
-      alt: "Crypto Logo",
-    },
-    {
-      name: "Growth Partner",
-      logo: partner_4,
-      alt: "Growth Logo",
+      alt: "Stocktwits",
     },
     {
       name: "Cloud Partner",

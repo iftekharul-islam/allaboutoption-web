@@ -9,6 +9,7 @@ const Registration = () => {
         window.location.href = "/profile";
     }
 
+    const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     first_name: "",
     phone: "",
@@ -32,12 +33,14 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const response = await Api.post("/web/register", formData)
     if (response.status === 201) {
       window.location.href = "/signin";
     } else {
       setError(response?.data?.errors);
     }
+    setLoading(false);
   };
 
   return (
@@ -174,8 +177,26 @@ const Registration = () => {
           <button
             type="submit"
             className="w-full bg-violet-600 hover:bg-violet-700 transition-all text-white py-3 rounded-lg font-medium mt-4"
+            disabled={loading}
           >
-            Sign up
+            {loading ? (
+              <svg
+                className="animate-spin h-5 w-5 mr-3 text-white inline-block"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" stroke="currentColor" />
+                <line x1="12" y1="6" x2="12" y2="12" />
+                <line x1="12" y1="18" x2="12" y2="18" />
+              </svg>
+            ) : (
+              "Sign up"
+            )}
           </button>
 
           <p className="text-center text-sm mt-4">

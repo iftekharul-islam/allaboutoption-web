@@ -74,8 +74,8 @@ const SigninForm = () => {
     <div className="flex items-center justify-center bg-white px-4 my-5">
       <div className="w-full max-w-md bg-gray-800 rounded-3xl p-10 shadow-2xl text-white text-center">
         {/* Icon */}
-        <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-blue-500">
-          <img src={logo} alt="Logo" className="w-10 h-10" />
+        <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-white">
+          <img src={logo} alt="Logo" className="h-10" />
         </div>
 
         <h2 className="text-3xl font-semibold mb-8">Sign in</h2>
@@ -147,9 +147,9 @@ const SigninForm = () => {
               />
               Remember password
             </label>
-            <a href="#" className="text-blue-400 hover:underline">
+            <Link to="/forget-password" className="text-blue-400 hover:underline">
               Forgot password?
-            </a>
+            </Link>
           </div>
 
           {/* Submit Button */}
