@@ -72,7 +72,7 @@ const Footer = () => {
         <div>
           <h5 className="font-semibold text-white mb-4">Site Links</h5>
           <ul className="space-y-2 text-sm">
-            <li><HashLink smooth to="/terms-conditions" className="hover:text-indigo-400">Terms & Conditions</HashLink></li>
+            <li><HashLink smooth to="/terms" className="hover:text-indigo-400">Terms & Conditions</HashLink></li>
             <li><HashLink smooth to="/privacy-policy" className="hover:text-indigo-400">Privacy policy</HashLink></li>
           </ul>
         </div>
