@@ -1,6 +1,9 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png"; // Adjust the path to your logo
+import FacebookLoginButton from "../components/FacebookLoginButton";
+import GoogleLoginButton from "../components/GoogleLoginButton";
 import Api from "../service/http";
 
 const SigninForm = () => {
@@ -49,9 +52,12 @@ const SigninForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await handleLogin({ ...formData, type: "manual" });
+  };
 
+  const handleLogin = async (data) => {
     setLoading(true);
-    const response = await Api.post("/web/login", formData);
+    const response = await Api.post("/web/login", data);
     if (response.status === 200) {
       localStorage.setItem("accessToken", JSON.stringify(response.data.access));
       localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -78,7 +84,7 @@ const SigninForm = () => {
           <img src={logo} alt="Logo" className="h-10" />
         </div>
 
-        <h2 className="text-3xl font-semibold mb-8">Sign in</h2>
+        <h2 className="text-3xl font-semibold mb-4">Sign in</h2>
 
         <form onSubmit={handleSubmit} className="space-y-6 text-left">
           {/* Email */}
@@ -147,7 +153,10 @@ const SigninForm = () => {
               />
               Remember password
             </label>
-            <Link to="/forget-password" className="text-blue-400 hover:underline">
+            <Link
+              to="/forget-password"
+              className="text-blue-400 hover:underline"
+            >
               Forgot password?
             </Link>
           </div>
@@ -183,8 +192,20 @@ const SigninForm = () => {
             )}
           </button>
 
+          <div className="flex items-center justify-center mt-4">
+            <div>
+              <div className="flex items-center justify-center">
+                <GoogleOAuthProvider clientId="115181365241-2ihempknf58hd5appbfsa1g5jlt4pr3t.apps.googleusercontent.com">
+                  <GoogleLoginButton handleLogin={handleLogin} />
+                </GoogleOAuthProvider>
+              </div>
+
+              <FacebookLoginButton handleLogin={handleLogin} />
+            </div>
+          </div>
+
           {/* Sign up link */}
-          <p className="text-center text-sm mt-4">
+          <p className="text-center text-sm mt-2">
             Looking to{" "}
             <Link to="/signup" className="text-blue-400 underline">
               Sign up

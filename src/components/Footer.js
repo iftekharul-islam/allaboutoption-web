@@ -1,9 +1,9 @@
 import {
   FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
+  FaStackExchange,
+  FaYoutube
 } from 'react-icons/fa';
+import { FaX } from 'react-icons/fa6';
 import { HashLink } from 'react-router-hash-link';
 import logo from '../assets/logo.png'; // replace with your logo path
 
@@ -15,19 +15,27 @@ const Footer = () => {
         <h3 className="text-2xl font-semibold mb-4">Social Media</h3>
         <div className="flex flex-wrap gap-6 justify-center items-center text-gray-300">
           <div className="flex items-center gap-2">
+          <a href="https://youtube.com/@allabouttheoptions4376" target="_blank" rel="noopener noreferrer">
             <FaYoutube className="text-xl" />
+          </a>
             {/* <span>15.1K+ Subscribers</span> */}
           </div>
           <div className="flex items-center gap-2">
+          <a href="https://www.facebook.com/groups/652909564891054" target="_blank" rel="noopener noreferrer">
             <FaFacebookF className="text-xl" />
+          </a>
             {/* <span>15.1K+ Followers</span> */}
           </div>
           <div className="flex items-center gap-2">
-            <FaInstagram className="text-xl" />
+          <a href="https://stocktwits.com/itsallaboutheoptions" target="_blank" rel="noopener noreferrer">
+            <FaStackExchange className="text-xl" />
+          </a>
             {/* <span>15.1K+ Followers</span> */}
           </div>
           <div className="flex items-center gap-2">
-            <FaLinkedinIn className="text-xl" />
+          <a href="https://x.com/aboutheoptions" target="_blank" rel="noopener noreferrer">
+            <FaX className="text-xl" />
+          </a>
             {/* <span>15.1K+ Followers</span> */}
           </div>
         </div>
@@ -46,7 +54,7 @@ const Footer = () => {
             </h4>
           </div>
           <p className="text-sm leading-relaxed">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text since the 1500s.
+            © 2016 It's All About The Options. All rights reserved. <br />
           </p>
         </div>
 
@@ -61,8 +69,16 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Newsletter */}
         <div>
+          <h5 className="font-semibold text-white mb-4">Site Links</h5>
+          <ul className="space-y-2 text-sm">
+            <li><HashLink smooth to="/terms-conditions" className="hover:text-indigo-400">Terms & Conditions</HashLink></li>
+            <li><HashLink smooth to="/privacy-policy" className="hover:text-indigo-400">Privacy policy</HashLink></li>
+          </ul>
+        </div>
+
+        {/* Newsletter */}
+        {/* <div>
           <h5 className="font-semibold text-white mb-2">Subscribe Our News</h5>
           <p className="text-sm mb-4">
             Hey! Are you tired of missing out on updates? Subscribe to our news and stay in the loop!
@@ -75,7 +91,7 @@ const Footer = () => {
           <button className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-3 rounded font-semibold">
             Submit
           </button>
-        </div>
+        </div> */}
       </div>
 
       <hr className="border-gray-700" />

@@ -28,6 +28,7 @@ const PricingSection = () => {
   const [selectedGateway, setSelectedGateway] = useState("stripe");
   const [loading, setLoading] = useState(false);
   const [clientSecret, setClientSecret] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   const location = useLocation();
   useEffect(() => {
@@ -78,6 +79,7 @@ const PricingSection = () => {
         selectedGateway === "stripe"
       ) {
         setClientSecret(result.data.setupIntentClientSecret);
+        setShowModal(true);
       }
     } catch (error) {
       console.error("Error during enrollment:", error);
@@ -219,6 +221,8 @@ const PricingSection = () => {
                 <div className="mb-4">
                   <StripeProvider>
                     <CardForm
+                      isOpen={showModal}
+                      onClose={() => setShowModal(false)}
                       clientSecret={clientSecret}
                       onComplete={handleStripeCompletion}
                     />
