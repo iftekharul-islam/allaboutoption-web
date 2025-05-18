@@ -1,32 +1,28 @@
 // FacebookLoginButton.js
 import FacebookLogin from "react-facebook-login";
+import { FACEBOOK_APP_ID } from "../config";
 
-const FacebookLoginButton = () => {
-  const handleLogin = (response) => {
-    if (!response.userID) {
-      console.log("Facebook login failed");
-      return;
-    }
-
-    console.log("Facebook user:", response);
-
-    const user = {
-      id: response.userID,
-      email: response.email,
-      name: response.name,
-      photo: response.picture.data.url,
-      type: "facebook",
-    };
-
-    // Send to backend or store
-  };
-
+const FacebookLoginButton = ({ handleLogin }) => {
   return (
     <FacebookLogin
-      appId="9558663540853784"
+      appId={FACEBOOK_APP_ID}
       autoLoad={false}
-      fields="name,email,picture"
-      callback={handleLogin}
+      fields="name,email,picture,birthday"
+      callback={(response) => {
+        if (!response.userID) {
+          console.log("Facebook login failed");
+          return;
+        }
+
+        handleLogin({
+          id: response?.userID,
+          email: response?.email,
+          dob: response?.birthday,
+          name: response?.name,
+          photo: response?.picture?.data?.url,
+          type: "facebook",
+        });
+      }}
       icon="fa-facebook"
       buttonStyle={{
         backgroundColor: "#3b5998",
@@ -37,7 +33,7 @@ const FacebookLoginButton = () => {
         // width: "100%",
         marginTop: "10px",
       }}
-    //   cssClass="facebook-login-button"
+      //   cssClass="facebook-login-button"
     />
   );
 };

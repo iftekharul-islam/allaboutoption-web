@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png"; // Adjust the path to your logo
 import FacebookLoginButton from "../components/FacebookLoginButton";
 import GoogleLoginButton from "../components/GoogleLoginButton";
+import { GOOGLE_CLIENT_ID } from "../config";
 import Api from "../service/http";
 
 const SigninForm = () => {
@@ -195,7 +196,7 @@ const SigninForm = () => {
           <div className="flex items-center justify-center mt-4">
             <div>
               <div className="flex items-center justify-center">
-                <GoogleOAuthProvider clientId="115181365241-2ihempknf58hd5appbfsa1g5jlt4pr3t.apps.googleusercontent.com">
+                <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
                   <GoogleLoginButton handleLogin={handleLogin} />
                 </GoogleOAuthProvider>
               </div>

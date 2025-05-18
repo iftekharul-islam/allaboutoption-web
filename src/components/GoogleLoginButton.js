@@ -5,9 +5,6 @@ import { jwtDecode } from "jwt-decode";
 const GoogleLoginButton = ({handleLogin}) => {
   return (
     <GoogleLogin
-        // shape="rectangular"
-        // logo_alignment="center"
-        // width={"100%"}
         onSuccess={(credentialResponse) => {
             const decoded = jwtDecode(credentialResponse.credential);
             handleLogin({
